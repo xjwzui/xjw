@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>实时显示</title>
+</head>
+<body>
+    <video id="live" width="640" height="480" autoplay></video>
+    <h1>实时显示</h1>
+    <script>
+        
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                var video = document.getElementById('live');
+                video.srcObject = stream;
+                video.onloadedmetadata = function (e) {
+                    video.play();
+                };
+            })
+            .catch(function (err) {
+                console.log("�����û�����ͷʧ��:", err);
+            });
+    </script>
+</body>
+</html>
